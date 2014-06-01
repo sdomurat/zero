@@ -64,7 +64,18 @@ bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope)
 			//  $location.path("/phones");
 		}]);
 
+bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
+    function ($scope, $routeParams, $http, $rootScope) {
+			$http.get('phones/testing.json').success(function (data) {
+        for (var i = 0; i < data.length; i++) {
+            if ($routeParams.videoId === data[i].entry.id.$t.slice(42, 53)) {
+                $scope.video = data[i];
+                break;
+            }
 
+        }
+			});
+    }]);
 
 
 

@@ -24,7 +24,7 @@ bestgameApp.config(['$routeProvider',
       }).
       when('/video/:videoId', {
         templateUrl: 'partials/video.html',
-        controller: 'ShowVideoController'
+        controller: 'ShowVideoCtrl'
       }).
       when('/ludzie', {
         templateUrl: 'partials/ludzie.html',
