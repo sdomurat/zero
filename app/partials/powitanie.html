@@ -1,0 +1,40 @@
+
+      <!--Sidebar content-->
+
+      Szukaj: <input ng-model="query">{{query}}
+      Sortuj:
+      <select ng-model="orderProp">
+        <option value="entry.title.$t">Tytuł</option>
+        <option value="video.entry.updated.$t">Najnowsze</option>
+      </select>
+
+
+      <!--Body content-->
+
+      <!-- <ul class="videos">
+        <li ng-repeat="video in videos | filter:query">
+          {{video.height}}
+          <p>{{video.author_name}}</p>
+          <img ng-src="{{video.thumbnail_url}}">
+        </li>
+      </ul> -->
+      <div class="content">
+      <table class="table">
+        <tr>
+          <th>#</th>
+          <th>Logo</th>
+          <th>Tytuł</th>
+          <th>Ocena</th>
+          <th>Kategoria</th>
+          <th>Data</th>
+        </tr>
+        <tr ng-repeat="video in videos | orderBy: orderProp | filter:query">
+          <th></th>
+          <th><img ng-src="{{video.entry.media$group.media$thumbnail.1.url}}"></th>
+          <th><a href="#/video/{{video.entry.id.$t.slice(42, 53)}}" > {{video.entry.title.$t}}</a></th>
+          <th>{{video.entry.gd$rating.average}}</th>
+          <th>{{video.entry.category.1.label}}</th>
+          <th>{{video.entry.updated.$t}}</th>
+          <!-- <th>{{video.author_name}}</th> -->
+        </tr>
+      </table>
