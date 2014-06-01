@@ -68,6 +68,7 @@ bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope,
 
 
 
+
 bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
     function ($scope, $routeParams, $http, $rootScope) {
 			console.log(result)
@@ -119,6 +120,7 @@ bestgameApp.directive('playYoutube', function ($sce) {
 
 bestgameApp.controller('AddCtrl', function ($scope, $rootScope, $location) {
     $scope.dodajVideo = function () {
+			console.log('result = ' + result)
         var link = $scope.videoLink.toString();
         var id = "";
         if (link.search("youtube.com") > -1) {
@@ -129,12 +131,14 @@ bestgameApp.controller('AddCtrl', function ($scope, $rootScope, $location) {
             dataType: 'json',
             async: false,
             success: function (data) {
+							console.log('data = ' + data)
                 $rootScope.a.push(new Object(data));
-                $location.path("#/videos")
+                $location.path("/witaj")
+								console.log(data)
             }
         });
         }
     };
      $rootScope.a = result;
-     //$location.path("#/videos")
+    // $location.path("#/videos")
 });

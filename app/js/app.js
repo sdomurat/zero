@@ -39,6 +39,6 @@ bestgameApp.config(['$routeProvider',
         controller: 'ZergiCtrl'
       }).
       otherwise({
-        redirectTo: '/witaj'
+        redirectTo: '/videos'
       });
   }]);
