@@ -48,24 +48,29 @@ bestgameApp.controller('LudzieCtrl', ['$scope','zmienna',function ($scope,zmienn
 // });
 
 
-bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope) {
+bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope, $location) {
 				$http.get('phones/testing.json').success(function (data) {
-					console.log(data);
-						// for (var i = 0; i < data.length; i++) {
+					//console.log(data);
+
+						for (var i = 0; i < data.length; i++) {
 						//
-						// 		var x = new Object(data[i]);
-						// 		result.push(x);
-						// 		console.log(result.push(x))
-						// }
-						$scope.videos = data;
+								var x = new Object(data[i]);
+						 		result.push(x);
+						 		console.log(result)
+						 }
+					//	$scope.videos = result;
+					//return result;
 				});
-				// $scope.videos = result;
+				 $scope.videos = result;
 				// console.log(result);
-			//  $location.path("/phones");
+			  //$location.path("#/witaj");
 		}]);
+
+
 
 bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
     function ($scope, $routeParams, $http, $rootScope) {
+			console.log(result)
 			$http.get('phones/testing.json').success(function (data) {
         for (var i = 0; i < data.length; i++) {
             if ($routeParams.videoId === data[i].entry.id.$t.slice(42, 53)) {
@@ -88,4 +93,48 @@ bestgameApp.controller('ProtosiCtrl', function ($scope,$http) {
 });
 
 bestgameApp.controller('ZergiCtrl', function ($scope) {
+});
+
+bestgameApp.directive('playYoutube', function ($sce) {
+    return {
+        restrict: 'EA',
+        scope: {code: '@'},
+        //replace: true,
+        template: '\
+        <div style="width:700px height:500px;">\n\
+            <iframe style="overflow:hidden " width="640" height="385"  src="{{url}}" frameborder="0" allowfullscreen>\n\
+            </iframe>\n\
+        </div>',
+        link: function (scope) {
+            //console.log('here');
+            scope.$watch('code', function (newVal) {
+                if (newVal) {
+                    scope.url = $sce.trustAsResourceUrl("//www.youtube.com/embed/" + newVal);
+                }
+            });
+        }
+    };
+});
+
+
+bestgameApp.controller('AddCtrl', function ($scope, $rootScope, $location) {
+    $scope.dodajVideo = function () {
+        var link = $scope.videoLink.toString();
+        var id = "";
+        if (link.search("youtube.com") > -1) {
+            id = link.slice(32, 53);
+
+            $.ajax({
+            url: "https://gdata.youtube.com/feeds/api/videos/" + id + "?&prettyprint=true&alt=json",
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $rootScope.a.push(new Object(data));
+                $location.path("#/videos")
+            }
+        });
+        }
+    };
+     $rootScope.a = result;
+     //$location.path("#/videos")
 });

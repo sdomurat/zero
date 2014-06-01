@@ -1,9 +1,12 @@
-<h1>{{video.entry.title.$t}}</h1>
-<p>Rating: {{video.entry.gd$rating.average}}</p>
-<p>Viewed: {{video.entry.yt$statistics.viewCount}}</p>
-  <div my-youtube class="video" code={{video.entry.id.$t.slice(42,53)}}></div>
-  <div>
-      <p>
-          {{video.entry.content.$t}}
-      </p>
+  <div class="row content">
+    <div class="col-md-5 ">
+      <div play-youtube class="video" code={{video.entry.id.$t.slice(42,53)}}>ggg</div>
+    </div>
+    <div class="col-md-7 tekst">
+      <h1>{{video.entry.title.$t}}</h1>
+      <h3>Viewed: {{video.entry.yt$statistics.viewCount}}</h3>
+      <div class="opis">
+        {{video.entry.content.$t}}
+      </div>
+    </div>
   </div>
