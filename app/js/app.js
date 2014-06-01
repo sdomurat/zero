@@ -22,6 +22,10 @@ bestgameApp.config(['$routeProvider',
         templateUrl: 'partials/powitanie.html',
         controller: 'WitajCtrl'
       }).
+      when('/video/:videoId', {
+        templateUrl: 'partials/video.html',
+        controller: 'ShowVideoController'
+      }).
       when('/ludzie', {
         templateUrl: 'partials/ludzie.html',
         controller: 'LudzieCtrl'
