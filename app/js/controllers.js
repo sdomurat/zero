@@ -3,8 +3,8 @@
 /* Controllers */
 var result = new Array();
 var a;
-bestgameApp.controller('WitajCtrl', function ($scope) {
-});
+// bestgameApp.controller('WitajCtrl', function ($scope) {
+// });
 
 bestgameApp.controller('LudzieCtrl', ['$scope','zmienna',function ($scope,zmienna) {
 	$scope.liczba = zmienna.wartosc;
@@ -49,39 +49,77 @@ bestgameApp.controller('LudzieCtrl', ['$scope','zmienna',function ($scope,zmienn
 
 
 bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope, $location) {
+			console.log(result.length)
+			if(result == 0){
 				$http.get('phones/testing.json').success(function (data) {
-					//console.log(data);
+					console.log(result.length)
 
 						for (var i = 0; i < data.length; i++) {
 						//
 								var x = new Object(data[i]);
 						 		result.push(x);
 						 		console.log(result)
-						 }
+								console.log()
+
 					//	$scope.videos = result;
 					//return result;
+				}
+
 				});
+			}
 				 $scope.videos = result;
+				console.log(result)
+
 				// console.log(result);
 			  //$location.path("#/witaj");
 		}]);
 
+bestgameApp.controller('AllCtrl', function ($route, $routeParams, $location, $scope, $rootScope) {
+
+    $scope.videos = $rootScope.a;
+    $scope.orderProp = 'gd$rating.average';
+
+    $scope.deleteVideo = function (id) {
+        for (var i = 0; i < result.length; i++) {
+            if (id === result[i].entry.id.$t.slice(42, 53)) {
+                result.splice(i, 1);
+                break;
+            }
+        }
+        $rootScope.a = result;
+        $location.path("#/wiecej");
+    };
+});
 
 
 
 bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
     function ($scope, $routeParams, $http, $rootScope) {
-			console.log(result)
-			$http.get('phones/testing.json').success(function (data) {
-        for (var i = 0; i < data.length; i++) {
-            if ($routeParams.videoId === data[i].entry.id.$t.slice(42, 53)) {
-                $scope.video = data[i];
+			console.log('result = ' + result)
+		//$http.get('phones/testing.json').success(function (data) {
+        for (var i = 0; i < result.length; i++) {
+            if ($routeParams.videoId === result[i].entry.id.$t.slice(42, 53)) {
+                $scope.video = result[i];
                 break;
             }
 
         }
-			});
+			//});
     }]);
+
+		// bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
+		// 		function ($scope, $routeParams, $http, $rootScope) {
+		// 			console.log('result = ' + result)
+		// 			$http.get('phones/testing.json').success(function (data) {
+		// 				for (var i = 0; i < data.length; i++) {
+		// 						if ($routeParams.videoId === data[i].entry.id.$t.slice(42, 53)) {
+		// 								$scope.video = data[i];
+		// 								break;
+		// 						}
+		//
+		// 				}
+		// 			});
+		// 		}]);
 
 
 
@@ -133,7 +171,7 @@ bestgameApp.controller('AddCtrl', function ($scope, $rootScope, $location) {
             success: function (data) {
 							console.log('data = ' + data)
                 $rootScope.a.push(new Object(data));
-                $location.path("/witaj")
+                $location.path("/wiecej")
 								console.log(data)
             }
         });
