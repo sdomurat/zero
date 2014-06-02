@@ -78,23 +78,24 @@ bestgameApp.controller('AllCtrl', function ($route, $routeParams, $location, $sc
 
     $scope.videos = $rootScope.a;
     $scope.orderProp = 'gd$rating.average';
-
-    $scope.deleteVideo = function (id) {
-        for (var i = 0; i < result.length; i++) {
-            if (id === result[i].entry.id.$t.slice(42, 53)) {
-                result.splice(i, 1);
-                break;
-            }
-        }
-        $rootScope.a = result;
-        $location.path("#/wiecej");
-    };
+   console.log(result)
+    // $scope.usunVideo = function (id) {
+    //     for (var i = 0; i < result.length; i++) {
+		// 			console.log("robie cos")
+    //         if (id === result[i].entry.id.$t.slice(42, 53)) {
+    //             result.splice(i, 1);
+    //             break;
+    //         }
+    //     }
+    //     $rootScope.a = result;
+    //     $location.path("/witaj");
+    // };
 });
 
 
 
 bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
-    function ($scope, $routeParams, $http, $rootScope) {
+    function ($scope, $routeParams, $http, $rootScope, $location) {
 			console.log('result = ' + result)
 		//$http.get('phones/testing.json').success(function (data) {
         for (var i = 0; i < result.length; i++) {
@@ -104,6 +105,17 @@ bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
             }
 
         }
+				$scope.usunVideo = function () {
+				    for (var i = 0; i < result.length; i++) {
+							console.log("robie cos")
+				        if ($routeParams.videoId === result[i].entry.id.$t.slice(42, 53)) {
+				            result.splice(i, 1);
+				            break;
+				        }
+				    }
+				    $rootScope.a = result;
+				    $location.path("/witaj");
+				};
 			//});
     }]);
 
@@ -171,12 +183,12 @@ bestgameApp.controller('AddCtrl', function ($scope, $rootScope, $location) {
             success: function (data) {
 							console.log('data = ' + data)
                 $rootScope.a.push(new Object(data));
-                $location.path("/wiecej")
+                $location.path("/witaj")
 								console.log(data)
             }
         });
         }
     };
      $rootScope.a = result;
-    // $location.path("#/videos")
+     //$location.path("#/wiecej")
 });

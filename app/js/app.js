@@ -38,6 +38,10 @@ bestgameApp.config(['$routeProvider',
         templateUrl: 'partials/zergi.html',
         controller: 'ZergiCtrl'
       }).
+      when('/usun/:videoId', {
+        template:'',
+        controller: 'AllCtrl'
+      }).
       otherwise({
         redirectTo: '/videos'
       });
