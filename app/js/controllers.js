@@ -107,16 +107,17 @@ bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
         }
 				$scope.usunVideo = function () {
 				    for (var i = 0; i < result.length; i++) {
-							console.log("robie cos")
+							console.log('robie cos')
 				        if ($routeParams.videoId === result[i].entry.id.$t.slice(42, 53)) {
 				            result.splice(i, 1);
-				            break;
+
 				        }
 				    }
 				    $rootScope.a = result;
 				    $location.path("/witaj");
 				};
 			//});
+			//$location.path("/witaj");
     }]);
 
 		// bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
