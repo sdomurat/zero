@@ -4,11 +4,11 @@
     </div>
     <div class="col-md-7 tekst">
       <h1>{{video.entry.title.$t}}</h1>
-      <h3>Viewed: {{video.entry.yt$statistics.viewCount}}</h3>
+      <h3>Wyświetleń: <strong>{{video.entry.yt$statistics.viewCount}}</strong></h3>
       <div class="opis">
         {{video.entry.content.$t}}
       </div>
-      <button href="#/delete/{{video.entry.id.$t.slice(42, 53)}}/" type="button" class="btn btn-primary">Edytuj</button>
+      <button type="button" class="btn btn-primary"><a href="#/edit/{{video.entry.id.$t.slice(42, 53)}}">Edytuj</a></button>
       <button href="#/witaj/" type="button" class="btn btn-danger" ng-click="usunVideo()"><a href="#/witaj/">Usuń</a> </button>
     </div>
   </div>

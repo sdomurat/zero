@@ -78,18 +78,7 @@ bestgameApp.controller('AllCtrl', function ($route, $routeParams, $location, $sc
 
     $scope.videos = $rootScope.a;
     $scope.orderProp = 'gd$rating.average';
-   console.log(result)
-    // $scope.usunVideo = function (id) {
-    //     for (var i = 0; i < result.length; i++) {
-		// 			console.log("robie cos")
-    //         if (id === result[i].entry.id.$t.slice(42, 53)) {
-    //             result.splice(i, 1);
-    //             break;
-    //         }
-    //     }
-    //     $rootScope.a = result;
-    //     $location.path("/witaj");
-    // };
+   	console.log(result)
 });
 
 
@@ -116,6 +105,20 @@ bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
 				    $rootScope.a = result;
 				    $location.path("/witaj");
 				};
+				$scope.edytujVideo = function() {
+					for (var i = 0; i < result.length; i++) {
+						if ($routeParams.videoId === result[i].entry.id.$t.slice(42, 53)) {
+							console.log($routeParams.videoId)
+							var old = "";
+							old = result[i].entry.title.$t;
+							console.log('old' + old)
+									$scope.$watch('liczba', function(newValue, old) {
+										console.log("Zmiana " + old + " na " + newValue);
+							})
+						}
+				}
+
+			};
 			//});
 			//$location.path("/witaj");
     }]);
@@ -134,6 +137,64 @@ bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
 		// 			});
 		// 		}]);
 
+bestgameApp.controller('listaYT', function ($scope, $rootScope, $location) {
+    var temp = new Array();
+    $scope.szukajVideo = function () {
+        $.ajax({
+            url: "https://gdata.youtube.com/feeds/api/videos?q=" + $scope.szukaneVideo + "&alt=json&max-results=5",
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+							console.log('data = ' + data)
+							console.log('temp przed '+temp)
+							for(var i=0;i < 5 ;i++){
+                temp.push(new Object(data.feed.entry[i]));
+								console.log(data.feed.entry[i])
+								console.log('temp = ' + temp)
+							}
+            }
+        });
+    };
+		console.log('asd' + temp);
+    $scope.dodajzYT = function (temp) {
+
+        $.ajax({
+          //  url: "https://gdata.youtube.com/feeds/api/videos/" + link + "?&prettyprint=true&alt=json",
+					//	R4AQGVwWtPM
+						url: "https://gdata.youtube.com/feeds/api/videos/R4AQGVwWtPM?&prettyprint=true&alt=json",
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+							console.log('data = ' + data)
+                result.push(new Object(data));
+            }
+        });
+        $rootScope.a = result;
+        $location.path("#/witaj");
+    };
+    $scope.videos = temp;
+		console.log('temp = ' + temp)
+		// $scope.dodajzYT = function () {
+		// 	console.log('result = ' + result)
+		// 		var link = $scope.asd;
+		// 		console.log('asd = ' + $scope.asd)
+		// 		var id = "";
+		// 				id = link.slice(42, 53);
+		//
+		// 				$.ajax({
+		// 				url: "https://gdata.youtube.com/feeds/api/videos/" + id + "?&prettyprint=true&alt=json",
+		// 				dataType: 'json',
+		// 				async: false,
+		// 				success: function (data) {
+		// 					console.log('data = ' + data)
+		// 						$rootScope.a.push(new Object(data));
+		// 						$location.path("/witaj")
+		// 						console.log(data)
+		// 				}
+		// 		});
+		//
+		// };
+});
 
 
 bestgameApp.controller('ProtosiCtrl', function ($scope,$http) {
@@ -173,6 +234,7 @@ bestgameApp.controller('AddCtrl', function ($scope, $rootScope, $location) {
     $scope.dodajVideo = function () {
 			console.log('result = ' + result)
         var link = $scope.videoLink.toString();
+				console.log('videoLink' + $scope.videoLink)
         var id = "";
         if (link.search("youtube.com") > -1) {
             id = link.slice(32, 53);

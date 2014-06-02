@@ -34,6 +34,10 @@ bestgameApp.config(['$routeProvider',
         templateUrl: 'partials/protosi.html',
         controller: 'ProtosiCtrl'
       }).
+      when('/edit/:videoId', {
+        templateUrl: 'partials/edit.html',
+        controller: 'ShowVideoCtrl'
+      }).
       when('/zergi', {
         templateUrl: 'partials/zergi.html',
         controller: 'ZergiCtrl'
@@ -43,6 +47,6 @@ bestgameApp.config(['$routeProvider',
         controller: 'AllCtrl'
       }).
       otherwise({
-        redirectTo: '/videos'
+        redirectTo: '/wiecej'
       });
   }]);

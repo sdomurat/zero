@@ -4,3 +4,33 @@
 
     <button class="btn-info col-md-12" id="addNewVideoBtn" ng-click="dodajVideo()">Dodaj video</button></div>
 </div>
+<div ng-controller="listaYT" class="expresions" style="margin-top: 50px;">
+  <div class="row">
+    <input value="" class="form-control input-lg col-md-8" type="text" placeholder="Szukaj bezposrednio na portau YouTube.com" ng-model="szukaneVideo">
+    <button class="btn-success col-md-12" id="szukaneVideoBtn" ng-click="szukajVideo()">Szukaj video</button></div>
+    <div class="content col-md-8">
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Logo</th>
+        <th>Tytuł</th>
+        <th>Wyświetlenia</th>
+        <th>Kategoria</th>
+        <th></th>
+      </tr>
+      <tr ng-repeat="video in videos | orderBy: orderProp | filter:query">
+        <th>
+          <button class="btn-success" id="szukaneVideoBtn" ng-click="dodajzYT()">Dodaj video</button></div>
+        </th>
+        <th><img ng-src="{{video.media$group.media$thumbnail.1.url}}"></th>
+        <th><a href="#/video/{{video.entry.id.$t.slice(42, 53)}}">{{video.title.$t}}</a></th>
+        <th>{{video.author.0.name.$t}}</th>
+        <th>{{video.category.1.label}}</th>
+        
+        <!-- <th>{{video.author_name}}</th> -->
+      </tr>
+    </table>
+
+
+  </div>
+</div>
