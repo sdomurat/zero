@@ -1,14 +1,14 @@
   <div class="row content">
-    <div class="col-md-5 ">
+    <div class="col-md-5 player-yt">
       <div play-youtube class="video" code={{video.entry.id.$t.slice(42,53)}}>ggg</div>
     </div>
-    <div class="col-md-7 tekst">
-      <h1>{{video.entry.title.$t}}</h1>
+    <div class="col-md-6 tekst">
+      <h2>{{video.entry.title.$t}} by <strong>{{video.entry.author.0.name.$t}}</strong></h2>
       <h3>Wyświetleń: <strong>{{video.entry.yt$statistics.viewCount}}</strong></h3>
       <div class="opis">
         {{video.entry.content.$t}}
       </div>
-      <button type="button" class="btn btn-primary"><a href="#/edit/{{video.entry.id.$t.slice(42, 53)}}">Edytuj</a></button>
-      <button href="#/witaj/" type="button" class="btn btn-danger" ng-click="usunVideo()"><a href="#/witaj/">Usuń</a> </button>
+      <button type="button" class="btn btn-primary"><a href="#/edit/{{video.entry.id.$t.slice(42, 53)}}" style="color:white; text-decoration: none;">Edytuj</a></button>
+      <button href="#/witaj/" type="button" class="btn btn-danger" ng-click="usunVideo()"><a href="#/witaj/" style="color:white; text-decoration: none;">Usuń</a> </button>
     </div>
   </div>

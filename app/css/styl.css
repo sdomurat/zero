@@ -2,5 +2,24 @@
   padding: 10px;
 }
 .tekst{
-  padding: 30px;
+  padding-left: 20px;
+}
+.ramka{
+  border: solid 1px blue;
+  padding: 5px;
+}
+.textarea{
+  padding: 5px
+}
+.edit-img{
+  margin-left:20px
+}
+a{
+  text-decoration: none;
+}
+.player-yt{
+  margin-left:50px;
+}
+.opis{
+  text-align:justify;
 }

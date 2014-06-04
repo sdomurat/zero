@@ -30,18 +30,18 @@ bestgameApp.config(['$routeProvider',
         templateUrl: 'partials/dodaj.html'
         //controller: 'AddCtrl'
       }).
-      when('/protosi', {
-        templateUrl: 'partials/protosi.html',
-        controller: 'ProtosiCtrl'
-      }).
+      // when('/protosi', {
+      //   templateUrl: 'partials/protosi.html',
+      //   controller: 'ProtosiCtrl'
+      // }).
       when('/edit/:videoId', {
         templateUrl: 'partials/edit.html',
         controller: 'ShowVideoCtrl'
       }).
-      when('/zergi', {
-        templateUrl: 'partials/zergi.html',
-        controller: 'ZergiCtrl'
-      }).
+      // when('/zergi', {
+      //   templateUrl: 'partials/zergi.html',
+      //   controller: 'ZergiCtrl'
+      // }).
       when('/usun/:videoId', {
         template:'',
         controller: 'AllCtrl'

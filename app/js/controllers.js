@@ -51,7 +51,7 @@ bestgameApp.controller('LudzieCtrl', ['$scope','zmienna',function ($scope,zmienn
 bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope, $location) {
 			console.log(result.length)
 			if(result == 0){
-				$http.get('phones/testing.json').success(function (data) {
+				$http.get('phones/testing.json').success(function name (data) {
 					console.log(result.length)
 
 						for (var i = 0; i < data.length; i++) {
@@ -67,11 +67,13 @@ bestgameApp.controller('WitajCtrl', ['$http', '$scope', function ($http, $scope,
 
 				});
 			}
+
 				 $scope.videos = result;
 				console.log(result)
-
+				setTimeout(name,1000);
 				// console.log(result);
 			  //$location.path("#/witaj");
+
 		}]);
 
 bestgameApp.controller('AllCtrl', function ($route, $routeParams, $location, $scope, $rootScope) {
@@ -112,11 +114,21 @@ bestgameApp.controller('ShowVideoCtrl', ['$scope', '$routeParams', '$http',
 							var old = "";
 							old = result[i].entry.title.$t;
 							console.log('old' + old)
-									$scope.$watch('liczba', function(newValue, old) {
-										console.log("Zmiana " + old + " na " + newValue);
+									$scope.$watch('result.entry.title.$t', function(newValue, old) {
+										// console.log("Zmiana " + video.entry.title.$t + " na " + newValue);
 							})
-						}
+							$scope.$watch('result.entry.author.0.name.$t', function(newValue, old) {
+								// console.log("Zmiana " + video.entry.title.$t + " na " + newValue);
+							})
+							$scope.$watch('result.entry.content.$t', function(newValue, old) {
+								// console.log("Zmiana " + video.entry.content.$t + " na " + newValue);
+							})
+
+					$location.path("/witaj");
+					}
+					$location.path("/witaj");
 				}
+				$location.path("/witaj");
 
 			};
 			//});
@@ -161,7 +173,7 @@ bestgameApp.controller('listaYT', function ($scope, $rootScope, $location) {
         $.ajax({
           //  url: "https://gdata.youtube.com/feeds/api/videos/" + link + "?&prettyprint=true&alt=json",
 					//	R4AQGVwWtPM
-						url: "https://gdata.youtube.com/feeds/api/videos/R4AQGVwWtPM?&prettyprint=true&alt=json",
+						url: "https://gdata.youtube.com/feeds/api/videos/i9MHigUZKEM?&prettyprint=true&alt=json",
             dataType: 'json',
             async: false,
             success: function (data) {

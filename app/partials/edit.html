@@ -1,9 +1,17 @@
 <div class="row">
-  <div class="col-md-3">
-    <img ng-src="{{video.entry.media$group.media$thumbnail.1.url}}">
+  <div class="col-md-4">
+    <img class="edit-img" ng-src="{{video.entry.media$group.media$thumbnail.0.url}}">
   </div>
-  <div class="com-md-8">
-    {{video.entry.title.$t}}
-    <input ng-model="liczba" type="text" value="{{video.entry.title.$t}}"><button class="btn-info col-md-12" id="addNewVideoBtn" ng-click="edytujVideo()">Dodaj video</button></div>
+  <div class="col-md-8" ng-controller="LudzieCtrl">
+    <div class="ramka">{{video.entry.title.$t}}</div>
+    <br>
+    <div class="ramka">{{video.entry.author.0.name.$t}}</div>
+    <br>
+    <div class="ramka">{{video.entry.content.$t}}</div><br>
+    <textarea class="textarea" cols="108" ng-model="video.entry.title.$t" type="text" value="{{video.entry.title.$t}}">Tytuł</textarea><br><br>
+    <textarea class="textarea"cols="108" ng-model="video.entry.author.0.name.$t" type="text" ng-model="video.entry.author.0.name.$t" value="{{video.entry.title.$t}}"></textarea><br>
+    <br><textarea class="textarea" rows="12" cols="108" ng-model="video.entry.content.$t">{{video.entry.content.$t}}</textarea><br>
+
+    <button href="/witaj" class="btn-success col-md-12 pokaz" id="addNewVideoBtn" ng-click="edytujVideo()">Zapisz zmiany</button></div>
   </div>
 </div>

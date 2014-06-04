@@ -14,6 +14,7 @@
         <th>#</th>
         <th>Logo</th>
         <th>Tytuł</th>
+        <th>Autor</th>
         <th>Wyświetlenia</th>
         <th>Kategoria</th>
         <th></th>
@@ -25,8 +26,9 @@
         <th><img ng-src="{{video.media$group.media$thumbnail.1.url}}"></th>
         <th><a href="#/video/{{video.entry.id.$t.slice(42, 53)}}">{{video.title.$t}}</a></th>
         <th>{{video.author.0.name.$t}}</th>
+        <th>{{video.yt$statistics.viewCount}}</th>
         <th>{{video.category.1.label}}</th>
-        
+
         <!-- <th>{{video.author_name}}</th> -->
       </tr>
     </table>
